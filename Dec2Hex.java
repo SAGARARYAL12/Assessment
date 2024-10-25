@@ -9,17 +9,6 @@ class Dec2Hex {
     public static int Arg1;
     private static final Logger logger = Logger.getLogger(Dec2Hex.class.getName());
 
-import java.util.logging.Logger;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-
-class Dec2Hex {
-    public static int Arg1;
-    private static final Logger logger = Logger.getLogger(Dec2Hex.class.getName());
-
     public static void main(String args[]) {
         try {
             if (args.length == 0) {
