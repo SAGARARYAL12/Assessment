@@ -9,31 +9,36 @@ class Dec2Hex {
             logger.severe("Error: Please enter a Number.");
             return;
         }
-        try {
-            Arg1 = Integer.parseInt(args[0]);
-        } catch (NumberFormatException e) {
+        
+        if (!isInteger(args[0])) {
             logger.severe("Error: The input provided is not a valid integer. Please enter a valid integer.");
             return;
         }
 
-        char ch[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
-        int rem, num;
-        num = Arg1;
-        String hexadecimal = "";
+        Arg1 = Integer.parseInt(args[0]);
+        String hexadecimal = convertToHex(Arg1);
+        logger.info(String.format("Hexadecimal representation is: %s", hexadecimal));
+    }
 
-        if (logger.isLoggable(java.util.logging.Level.INFO)) {
-            logger.info(String.format("Converting the Decimal Value %d to Hex...", num));
-        }
+    public static String convertToHex(int num) {
+        char ch[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+        StringBuilder hexadecimal = new StringBuilder();
 
         while (num != 0) {
-            rem = num % 16;
-            hexadecimal = ch[rem] + hexadecimal;
+            int rem = num % 16;
+            hexadecimal.insert(0, ch[rem]);
             num = num / 16;
         }
 
-        if (logger.isLoggable(java.util.logging.Level.INFO)) {
-            logger.info(String.format("Hexadecimal representation is: %s", hexadecimal));
+        return hexadecimal.toString();
+    }
+
+    private static boolean isInteger(String str) {
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
         }
     }
 }
-
